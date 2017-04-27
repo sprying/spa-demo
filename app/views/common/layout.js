@@ -11,8 +11,12 @@ define('app/views/common/layout', [
       })
     },
     render: function(){
-      this.setHTML(this.id, this.tmpl)
-      this._mountVframes()
+      //this.setHTML(this.id, this.tmpl)
+
+      var me = this
+      me.setView().then(function(){
+        me._mountVframes()
+      })
     },
     _mountVframes: function(){
       var mainVframe = this.vom.get('magix_vf_main')

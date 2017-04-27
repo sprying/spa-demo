@@ -10,7 +10,8 @@ define('app/view', [
 ], function(Magix, _, $, Pat, Loader){
   Magix.View.mixin({
     setView: function(firstCallback){
-      var defer = $.defer()
+      var me = this
+      var defer = $.Deferred()
       var node = this.$(this.id)
       this.undelegateEvents()
       this.beginUpdate()
@@ -26,7 +27,7 @@ define('app/view', [
         this.pat.$apply()
       }
       Loader.boot(node, function(){
-        this.endUpdate()
+        me.endUpdate()
         firstCallback && firstCallback()
         defer.resolve(Loader)
       })

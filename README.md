@@ -9,7 +9,9 @@
 >mat
 
 由于前后端是并行开发，开发过程中，前端使用rap模拟后端请求
+
 >[rap](http://rapapi.org/org/index.do)
+
 先去平台新建一个项目，渠道项目id，修改matfile.js对应的字段
 
 ## 前端框架
@@ -33,9 +35,11 @@ Magix.start时候，tagName参数在api中又没有
 * 标签引用子view
 
         <div mx-vframe="true" mx-view="app/views/header"></div>
+
     
 ##参考链接
 [mat](http://matjs.com/)
+
 [brix book](http://thx.github.io/brix-book/)
 
 ## NOTE
@@ -44,3 +48,15 @@ Magix.start时候，tagName参数在api中又没有
 * mat的正则匹配写法还是不好，没看懂，直接从项目里拷贝配置过来了
 * 总之终于本地开发跑起来了
 * 这个坑确实很大，从`mat`、`pat`的事件，`magix`方法、属性欠缺，不知道怎么用，但是我想，这也是我成长的见证，以后自己在业务里沉淀，可以写到这里
+
+### 2017-04-28
+* 启动magix，有个重要的配置，如下，这配置是vframe的标签叫什么名字，所以我们用div作为标签名
+```js
+    Magix.start({
+      // ...
+      tagName: 'div',
+      // ...
+    })
+```
+
+* 支持brix组件调用
