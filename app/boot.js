@@ -5,6 +5,8 @@
   var scripts = document.getElementsByTagName('script')
   var src = scripts[scripts.length - 1].getAttribute('src')
   var base = /(.*)\/\w+.js/.exec(src)[1]
+
+  var debug = document.location.href.search('debug') != -1
   require.config({
     paths: {
       app: base + '/',
@@ -12,7 +14,10 @@
       pat: '//g.alicdn.com/mm/pat/latest/pat'
     }
   })
-  require(['magix'], function(Magix){
+  require(['magix', 'pat'], function(Magix, Pat){
+    Pat.config({
+      debug: debug
+    })
     Magix.start({
       edge: true,
       tagName: 'div',

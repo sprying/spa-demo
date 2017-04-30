@@ -12,22 +12,24 @@ define('app/view', [
     setView: function(firstCallback){
       var me = this
       var defer = $.Deferred()
-      var node = this.$(this.id)
-      this.undelegateEvents()
+      var node = me.$(this.id)
+      this.undelegateEvents(node) //只能从源码翻出来
       this.beginUpdate()
+      var data = _.extend(this.data)
       if(!this.rendered){
-        var data = _.extend(this.data)
         this.pat = new Pat({
           el: node,
           data: data,
           template: this.tmpl,
-          filters: this.filters
+          filters: this.filters,
+          dataCheckType: 'dirtyCheck'
         })
       } else {
         this.pat.$apply()
       }
       Loader.boot(node, function(){
         me.endUpdate()
+        me.delegateEvents(node)
         firstCallback && firstCallback()
         defer.resolve(Loader)
       })

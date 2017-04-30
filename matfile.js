@@ -23,6 +23,6 @@ mat.task('pushState', function () {
 
 mat.task('default', ['less', 'pushState'], function(){
   mat.url([/\.json/]).use(rap({
-    projectId: '17799' // rap平台对应的项目id，用你的替换
+    projectId: '18155' // rap平台对应的项目id，用你的替换
   }))
 })

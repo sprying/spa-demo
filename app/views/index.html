@@ -1,1 +1,36 @@
 <div class="main">主要内容</div>
+<table bx-name="components/table" class="table">
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>ID</th>
+    <th>标题</th>
+    <th>内容</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{^if(isError)}}
+  {{#for(item in todos)}}
+  <tr>
+    <td>{{__INDEX__}}</td>
+    <td>{{item.id}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.content}}</td>
+    <td>
+      <div class="operation">
+        <a href="javascript:void(0);" class="color-blue">删除</a>
+      </div>
+    </td>
+  </tr>
+  {{/for}}
+  {{/if}}
+  {{#if(isError)}}
+  <tr>
+    <td colspan="5">
+      <a href="javascript:void(0);" class="color-blue" mx-click="fresh()">刷新</a>
+    </td>
+  </tr>
+  {{/if}}
+  </tbody>
+</table>
