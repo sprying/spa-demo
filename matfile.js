@@ -4,7 +4,6 @@
 
 var mat = require('mat')
 var less = require('mat-less')
-var rap = require('mat-rap')
 
 // 预编译less
  mat.task('less', function(){
@@ -22,7 +21,8 @@ mat.task('pushState', function () {
 })
 
 mat.task('default', ['less', 'pushState'], function(){
-  mat.url([/\.json/]).use(rap({
-    projectId: '18155' // rap平台对应的项目id，用你的替换
-  }))
+  mat.url([/\.json/]).use(function *(next){
+    this.proxyPass = 'rapapi.org/mockjsdata/18155' // proxyPass会被mat内部处理
+    yield next
+  })
 })

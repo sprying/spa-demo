@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "dependencies": {
     "mat": "^0.1.11",
-    "mat-less": "^0.0.3",
-    "mat-rap": "^0.0.3"
+    "mat-less": "^0.0.3"
   }
 }

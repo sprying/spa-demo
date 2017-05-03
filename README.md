@@ -66,3 +66,27 @@ Magix.start时候，tagName参数在api中又没有
 * 自定义view的渲染方法，magix文档却没说要重新绑定事件，怎么接入事件绑定，如何绑定事件，坑爹
 ```undelegateEvents```
 * 准备做一个增、查、改、删的例子，查的是rap模拟平台的数据，已经做好了
+
+### 2017-05-01
+* 定义less文件结构
+```
+	└── style
+	    ├── block.less // 放着业务里的公共区块
+	    ├── common.less // 定义一些业务相关的可复用样式
+	    ├── component.less // 放在一些组件样式
+	    ├── global.less // 定义一些业务无关的可复用样式
+	    ├── layout.less 
+	    ├── main.less // 唯一的入口css
+	    ├── pages // 放业务对应的css
+	    └── var.less // 定义变量，mixin
+```
+* mat的api并不好，代理的代码这块放在mat里，感觉怪怪的，然后mat-rap、mat-proxy什么事情都没做，并且不能改rap要代理的域名，所以我干脆去掉。
+```
+mat.task('default', ['less', 'pushState'], function(){
+  mat.url([/\.json/]).use(function *(next){
+    this.proxyPass = 'rapapi.org/mockjsdata/18155' // proxyPass会被mat内部处理
+    yield next
+  })
+})
+```
+为此我还研究下koa、mat、co的源码，坑真深
