@@ -90,3 +90,26 @@ mat.task('default', ['less', 'pushState'], function(){
 })
 ```
 为此我还研究下koa、mat、co的源码，坑真深
+
+### 2017-05-05
+* 绑定事件，删除item时指定了两个参数，回调中怎么获取这两个参数
+    ```
+        <a href="javascript:void(0);" mx-click="delItem({{__INDEX__}}, {{item.id}})">删除</a>
+    ```
+
+    ```
+        delItem: function(e, index, id){
+    ```
+* 新建一个brix组件，```globalTip```，这个是非主流用法，不是像HTML原生一样使用，而是在js中调用
+
+    这个组件，是全局提示
+
+* 使用[iconfont](http://iconfont.cn/)新建一个项目，将图标样式复制到项目less文件中，在globalTip提示中加图标
+    ![iconfont](https://img.alicdn.com/tfs/TB1jvEIQVXXXXbqXFXXXXXXXXXX-655-454.png)
+    ```
+    @import url(//at.alicdn.com/t/font_jeewzi4tzgpvte29.css);
+    ```
+
+    ```
+      <i class="iconfont icon-chenggong2"></i>
+    ```  

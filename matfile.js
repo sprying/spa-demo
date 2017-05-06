@@ -7,7 +7,7 @@ var less = require('mat-less')
 
 // 预编译less
  mat.task('less', function(){
-  mat.url([/main\.css/]).rewrite([
+  mat.url([/\.css/]).rewrite([
     [/\.css/g, '.less']
   ])
     .use(less())

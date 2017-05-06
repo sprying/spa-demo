@@ -3,8 +3,9 @@
  */
 define('app/views/index', [
   'magix',
-  'app/model/TodoModel'
-], function(Magix, TodoModel){
+  'app/model/TodoModel',
+  'app/exts/globalTip/index'
+], function(Magix, TodoModel, globalTip){
   return Magix.View.extend({
     render: function(){
       var me = this
@@ -26,6 +27,21 @@ define('app/views/index', [
     },
     fresh: function(e){
       this.render()
+    },
+    delItem: function(e, index, id){
+      var me = this
+      TodoModel.delItem(this, {
+        id: id
+      }).then(function(err, data){
+        if(!err){
+          globalTip.show({
+            content: '删除成功',
+            type: 'ok'
+          })
+          me.data.todos.splice(index, 1)
+          me.setView()
+        }
+      })
     }
   })
 })

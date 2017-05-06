@@ -6,10 +6,14 @@ define('app/model/manager',[
   'app/model/model'
 ],function(Magix, Model){
   var manager = Magix.Manager.create(Model)
-  manager.registerModels({
+  manager.registerModels([{
     name: 'get_todo_list',
     url: '/todo/queryTodos.json',
     type: 'GET'
-  })
+  }, {
+    name: 'del_todo',
+    url: '/todo/del.json',
+    type: 'POST'
+  }])
   return manager
 })
