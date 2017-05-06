@@ -1,0 +1,112 @@
+/* Var */
+
+// 通用颜色
+@color-green: #5aa62e;
+@color-blue: #0066dd;
+@color-red: #ef3000;
+
+// 品牌色
+@color-brand: #fa6419;
+@color-brand-hover: #e65c17;
+
+// 选中颜色
+@block-selected: #FF8041;
+@block-hover: #EDEDF0;
+
+// 布局宽度
+@layout-width: 1190px;
+@layout-width-1000: 1000px;
+
+// a连接颜色
+@a-color: #666;
+@a-color-hover: @color-brand;
+
+// 三种主题色，由浅到深
+@color-c: #ccc;  // 20%
+@color-l: #999;  // 40%
+@color-m: #666;  // 60%
+@color-d: #333;  // 80%
+
+// 主题边框色
+@color-border: #e6e6eb;
+
+
+/**
+ * Mixins
+ **/
+.border-radius (@radius) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+.box-shadow (@value) {
+  -moz-box-shadow: @value;
+  -webkit-box-shadow: @value;
+  -ms-box-shadow: @value;
+  -o-box-shadow: @value;
+  box-shadow: @value;
+}
+.box-sizing(@value){
+  -moz-box-sizing: @value;
+  -webkit-box-sizing: @value;
+  box-sizing: @value;
+}
+.auto-height (@height) {
+  height: auto !important;
+  height: @height;
+  min-height: @height;
+}
+.opacity (@value) {
+  @opacityPercentage: @value * 100;
+  opacity: @value;
+  filter: alpha(opacity=@opacityPercentage);
+}
+.transition (@value) {
+  -moz-transition: @value;
+  -webkit-transition: @value;
+  -ms-transition: @value;
+  -o-transition: @value;
+  transition: @value;
+}
+.transform (@value) {
+  -webkit-transform: @value;
+  -moz-transform: @value;
+  -ms-transform: @value;
+  -o-transform: @value;
+  transform: @value;
+}
+.animation (@value) {
+  -webkit-animation: @value;
+  -moz-animation: @value;
+  -ms-animation: @value;
+  -o-animation: @value;
+  animation: @value;
+}
+.retina (@bg1, @bg2) {
+  background: url(@bg1);
+  background-image: -webkit-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -moz-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -ms-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -o-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-repeat: no-repeat;
+}
+.px2rem (@name, @px) {
+  @{name}: @px / 37.5 * 1rem;
+}
+.iconfont(@content) {
+  content: @content;
+  font-family: "advfont" !important;
+  font-size: 12px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.overflow_dotted() {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

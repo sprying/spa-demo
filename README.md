@@ -68,7 +68,7 @@ Magix.start时候，tagName参数在api中又没有
 * 准备做一个增、查、改、删的例子，查的是rap模拟平台的数据，已经做好了
 
 ### 2017-05-01
-* 定义less文件结构
+* less文件结构
 ```
 	└── style
 	    ├── block.less // 放着业务里的公共区块
@@ -113,3 +113,22 @@ mat.task('default', ['less', 'pushState'], function(){
     ```
       <i class="iconfont icon-chenggong2"></i>
     ```  
+
+### 2017-05-06
+* 样式文件放在项目里定义，按前几天说的less文件结构
+    ```
+        └── style
+            ├── block.less // 放着业务里的公共区块
+            ├── common.less // 定义一些业务相关的可复用样式
+            ├── component.less // 放在一些组件样式
+            ├── global.less // 定义一些业务无关的可复用样式
+            ├── layout.less 
+            ├── main.less // 唯一的入口css
+            ├── pages // 放业务对应的css
+            └── var.less // 定义变量，mixin
+    ```
+
+    加上样式reset <https://thx.github.io/cube/doc/neat>
+    ```
+    //g.alicdn.com/thx/cube/1.3.2/neat.css
+    ```
