@@ -1,5 +1,53 @@
-
+.header{
+  height: 50px;
+  background: #ff6600;
+  color: #fff;
+  h3{
+    padding-top: 8px;
+    padding-left: 20px;
+  }
+  .menus{
+    margin-left: 54px;
+  }
+  ul>li{
+    float: left;
+    a{
+      padding: 0 25px;
+      font-size: 14px;
+      line-height: 50px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    &.active{
+      a{
+        color: #fff;
+      }
+    }
+  }
+}
+.sidebar{
+  width: 200px;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  background-color: #443f3c;
+  ul{
+    margin-top: 50px;
+    font-size: 14px;
+    >li{
+      a{
+        padding: 6px 30px;
+        color: #ccc;
+        display: block;
+      }
+      &.active a{
+        color: #fff;
+      }
+    }
+  }
+}
 .main{
-  width: 1190px;
-  margin: 0 auto;
+  padding-top: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
 }

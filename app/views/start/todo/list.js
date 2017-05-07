@@ -1,7 +1,7 @@
 /**
- * Created by yingchun.fyc@alibaba-inc.com on 2017/4/25.
+ * Created by yingchun.fyc@alibaba-inc.com on 2017/5/6.
  */
-define('app/views/index', [
+define('app/views/start/todo/list',[
   'magix',
   'app/model/TodoModel',
   'app/exts/globalTip/index'

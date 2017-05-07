@@ -1,0 +1,7 @@
+<div class="sidebar">
+  <ul>
+    <li t-class:active="item.checked" t-for="item in items">
+      <a href="{{item.path}}">{{item.name}}</a>
+    </li>
+  </ul>
+</div>

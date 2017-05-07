@@ -9,7 +9,7 @@ define('app/view', [
   'brix/loader'
 ], function(Magix, _, $, Pat, Loader){
   Magix.View.mixin({
-    setView: function(firstCallback){
+    setView: function(firstCallback, otherCallback){
       var me = this
       var defer = $.Deferred()
       var node = me.$(this.id)
@@ -17,22 +17,29 @@ define('app/view', [
       this.beginUpdate()
       var data = _.extend(this.data)
       if(!this.rendered){
-        this.pat = new Pat({
+        this._pat = new Pat({
           el: node,
           data: data,
           template: this.tmpl,
           filters: this.filters,
           dataCheckType: 'dirtyCheck'
         })
+        Loader.boot(node, function(){
+          me.endUpdate()
+          me.delegateEvents(node)
+          firstCallback && firstCallback()
+          defer.resolve(Loader)
+        })
       } else {
-        this.pat.$apply()
+        _.extend(me._pat.$data, me.data)
+        this._pat.$apply()
+        Loader.boot(node, function(){
+          me.endUpdate()
+          me.delegateEvents(node)
+          otherCallback && otherCallback()
+          defer.resolve(Loader)
+        })
       }
-      Loader.boot(node, function(){
-        me.endUpdate()
-        me.delegateEvents(node)
-        firstCallback && firstCallback()
-        defer.resolve(Loader)
-      })
       return defer.promise()
     }
   })

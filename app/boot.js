@@ -21,12 +21,15 @@
     Magix.start({
       edge: true,
       tagName: 'div',
-      unfoundView: 'app/views/404',
+      unfoundView: 'app/views/common/404',
       extensions: [
-        'app/view'
+        'app/view',
+        'app/vclick' // 拦截链接跳转
       ],
       routes: {
-        '/': 'app/views/common/layout'
+        '/': 'app/views/common/layout',
+        '/start/todo/list.htm': 'app/views/common/layout',
+        '/component/index.htm': 'app/views/common/layout'
       }
     })
   })

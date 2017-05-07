@@ -132,3 +132,9 @@ mat.task('default', ['less', 'pushState'], function(){
     ```
     //g.alicdn.com/thx/cube/1.3.2/neat.css
     ```
+
+* 修改了layout布局，页头菜单和侧边栏菜单关联，在```app/exts/menu/index.js```配置。当然每个view都可以成为布局，这只是其中一个布局的例子。
+    但是感觉配置太不方便了，```boot.js```需要配置，```layout.js```需要配置，简直晕了，并且每个项目都要去实现，太耗费人力了，我都花费两天才搞定。
+
+* 侧边栏收起，当url发生变化时，magix框架使layout先监听到，触发main区块```margin-left```发生变化，而后magix框架执行一系列动作后，sidebar也监听到，触发宽度变化，但是慢一拍。慢一拍的时间又不好定，所以就尴尬了，现在main收缩时慢150ms。
+* 在多页面中发现前面不合理地方，比如index.html的修改，比如layout.js中rendered判断，view.js重新render时候data填充  
