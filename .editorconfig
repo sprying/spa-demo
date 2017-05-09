@@ -1,0 +1,10 @@
+# EditorConfig is awesome: http://EditorConfig.org
+# if the IDE is webstorm, use plugin https://plugins.jetbrains.com/plugin/7294-editorconfig
+
+# top-most EditorConfig file
+root = true
+
+# 4 space indentation
+[*.js]
+indent_style = space
+indent_size = 2

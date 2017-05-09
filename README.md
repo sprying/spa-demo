@@ -3,9 +3,14 @@
 搭建一套单页应用，同时详解每个步骤、具体代码，每天写一点代码
 
 ## 开发工具
->安装nodejs>=0.12.0
+>我是先安装了[nvm](https://github.com/creationix/nvm)管理本地nodeJs多个版本，
+
+>nvm install node，我本地安装的是v7.10.0
+
 >npm i mat -g
+
 >npm i
+
 >mat
 
 由于前后端是并行开发，开发过程中，前端使用rap模拟后端请求
@@ -19,13 +24,14 @@
 
     <script src="//g.alicdn.com/thx/brix-release/1.0.0-beta.9/require-config.js"></script>
 
-这个js中会有路径别名配置，比如magix，后来发现没magix配置。
+这个js中会有路径别名配置，比如jquery。
 
 ## 从零开始一个新建文件
 ### boot
 通过require引入magix，brix
 
 Magix.start时候，tagName参数在api中又没有
+
 ### 扩展View
 
 如何定义新的渲染方法
@@ -35,6 +41,7 @@ Magix.start时候，tagName参数在api中又没有
 * 标签引用子view
 
         <div mx-vframe="true" mx-view="app/views/header"></div>
+
 
     
 ##参考链接
@@ -138,3 +145,11 @@ mat.task('default', ['less', 'pushState'], function(){
 
 * 侧边栏收起，当url发生变化时，magix框架使layout先监听到，触发main区块```margin-left```发生变化，而后magix框架执行一系列动作后，sidebar也监听到，触发宽度变化，但是慢一拍。慢一拍的时间又不好定，所以就尴尬了，现在main收缩时慢150ms。
 * 在多页面中发现前面不合理地方，比如index.html的修改，比如layout.js中rendered判断，view.js重新render时候data填充  
+
+### 2017-05-09
+* 使用代码格式化配置
+我用的IDE是webstorm，先使用了jshint，发现在工程里加了配置文件，没有生效，就换用了editorconfig，重启编辑器生效了
+查了一下，发现editorconfig是webstorm默认安装的插件，jshint是webstorm已经集成了，但是没开启<https://www.jetbrains.com/help/webstorm/2017.1/jshint.html>
+究竟用哪个，考虑jshint、editorconfig在sublime里都需要安装，而editorconfig默认就在webstorm里生效，所以用editorconfig
+
+
