@@ -2,15 +2,11 @@
 ### 阶段一目标
 搭建一套单页应用，同时详解每个步骤、具体代码，每天写一点代码
 
-## 开发工具
->我是先安装了[nvm](https://github.com/creationix/nvm)管理本地nodeJs多个版本，
-
->nvm install node，我本地安装的是v7.10.0
-
->npm i mat -g
-
->npm i
-
+## 开发环境
+>我是先安装了[nvm](https://github.com/creationix/nvm)管理本地nodeJs多个版本，  
+>nvm install node，我本地安装的是v7.10.0  
+>npm i mat -g  
+>npm i  
 >mat
 
 由于前后端是并行开发，开发过程中，前端使用rap模拟后端请求
@@ -19,32 +15,32 @@
 
 先去平台新建一个项目，渠道项目id，修改matfile.js对应的字段
 
-## 前端框架
-页面引入
+## 新建工程
+#### 在工程根目录下新建index.html
+是个空页面，页面引入模块加载器require.js，如下
 
     <script src="//g.alicdn.com/thx/brix-release/1.0.0-beta.9/require-config.js"></script>
 
-这个js中会有路径别名配置，比如jquery。
+这个js中会有路径别名配置，比如jquery，underscore，brix。
 
-## 从零开始一个新建文件
-### boot
+#### 新建项目入口js，`app/boot.js`
 通过require引入magix，brix
 
-Magix.start时候，tagName参数在api中又没有
+Magix.start里配置路由
 
-### 扩展View
+#### 扩展View，`app/view.js`
 
-如何定义新的渲染方法
->View.prototype.$ 获取dom
+定义新的渲染方法，因为这里只是一个magix，magix只是管理路由，view，具体如何拿到获取的数据和模板渲染，要业务开发方自己去实现，这里用到了pat模板引擎，很好的支持局部刷新，组件这块使用了brix。
 
-### 新建view
+
+#### 新建view
 * 标签引用子view
 
         <div mx-vframe="true" mx-view="app/views/header"></div>
 
 
     
-##参考链接
+## 参考链接
 [mat](http://matjs.com/)
 
 [brix book](http://thx.github.io/brix-book/)
@@ -55,9 +51,11 @@ Magix.start时候，tagName参数在api中又没有
 * mat的正则匹配写法还是不好，没看懂，直接从项目里拷贝配置过来了
 * 总之终于本地开发跑起来了
 * 这个坑确实很大，从`mat`、`pat`的事件，`magix`方法、属性欠缺，不知道怎么用，但是我想，这也是我成长的见证，以后自己在业务里沉淀，可以写到这里
+* `View.prototype.$` 获取dom
+
 
 ### 2017-04-28
-* 启动magix，有个重要的配置，如下，这配置是vframe的标签叫什么名字，所以我们用div作为标签名
+* 启动magix，有个重要的配置，如下，这配置是vframe的标签叫什么名字，所以我们用div作为标签名，tagName参数在api中又没有
 ```js
     Magix.start({
       // ...
@@ -153,3 +151,5 @@ mat.task('default', ['less', 'pushState'], function(){
 究竟用哪个，考虑jshint、editorconfig在sublime里都需要安装，而editorconfig默认就在webstorm里生效，所以用editorconfig
 
 
+### 2017-05-10
+* 重新修改了README开头说明
