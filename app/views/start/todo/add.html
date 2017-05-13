@@ -24,6 +24,11 @@
         count:100
       }"></span>
     </div>
+    {{^if(isSending)}}
     <button class="btn btn-brand w120" mx-click="doSubmit">新建消息</button>
+    {{/if}}
+    {{#if(isSending)}}
+    <button class="btn btn-brand w120 btn-disabled">请求中...</button>
+    {{/if}}
   </form>
 </div>

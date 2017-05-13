@@ -9,6 +9,7 @@ define('app/views/start/todo/add', [
 ], function (Magix, Loader, TodoModel, globalTip) {
   return Magix.View.extend({
     render: function(){
+      this.data = {}
       this.setView()
     },
     doSubmit: function(e){
@@ -30,6 +31,9 @@ define('app/views/start/todo/add', [
             })
           }
         })
+        debugger
+        me.data.isSending = true
+        me.setView()
       })
     }
   })
