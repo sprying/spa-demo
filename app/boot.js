@@ -24,11 +24,13 @@
       unfoundView: 'app/views/common/404',
       extensions: [
         'app/view',
-        'app/vclick' // 拦截链接跳转
+        'app/vclick', // 拦截链接跳转
+        'app/serializejson'
       ],
       routes: {
         '/': 'app/views/common/layout',
         '/start/todo/list.htm': 'app/views/common/layout',
+        '/start/todo/add.htm': 'app/views/common/layout',
         '/component/index.htm': 'app/views/common/layout'
       }
     })

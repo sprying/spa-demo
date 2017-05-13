@@ -30,6 +30,17 @@ define('app/model/TodoModel',[
         defer.resolve(err, ResModel.get('data'))
       }))
       return defer.promise()
+    },
+    addItem: function(view, formParams){
+      var defer = $.Deferred()
+      var request = Manager.createRequest(view)
+      request.fetchAll([{
+        name: 'add_todo',
+        formParams: formParams
+      }], view.wrapAsync(function(err, ResModel){
+        defer.resolve(err, ResModel.get('data'))
+      }))
+      return defer.promise()
     }
   }
 })

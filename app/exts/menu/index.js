@@ -13,7 +13,6 @@ define('app/exts/menu/index', [
       path: '/start/todo/list.htm',
       include: [
         '/start/todo/list.htm',
-        '/start/todo/add.htm'
       ]
     }, {
       name: '测试测试',

@@ -14,6 +14,10 @@ define('app/model/manager',[
     name: 'del_todo',
     url: '/todo/del.json',
     type: 'POST'
+  }, {
+    name: 'add_todo',
+    url: '/todo/add.json',
+    type: 'POST'
   }])
   return manager
 })

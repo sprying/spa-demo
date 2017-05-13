@@ -521,3 +521,66 @@ a {
   -o-animation-fill-mode: none;
 }
 
+.form {
+  .form-element {
+    margin-bottom: 30px;
+  }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #999;
+    cursor: text;
+  }
+}
+.input,
+.textarea {
+  color: @color-d;
+  font-size: 12px;
+  height: 32px;
+  padding: 6px 9px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e6e6e6;
+  background-color: #fff;
+  vertical-align: middle;
+  .border-radius(4px);
+  .box-sizing(border-box);
+}
+.input:hover,
+.textarea:hover {
+  border-color: #cccccc;
+}
+.input:focus,
+.textarea:focus {
+  border-color: #ff8800;
+  outline: none;
+}
+input::-ms-clear {
+  display: none;
+}
+.input::-moz-placeholder,
+.textarea::-moz-placeholder {
+  color: @color-l;
+}
+.input::-webkit-input-placeholder,
+.textarea::-webkit-input-placeholder {
+  color: @color-l;
+}
+.input[disabled],
+.input[readonly],
+.textarea[disabled],
+.checkbox[disabled],
+.radio[disabled] {
+  border-color: #e6e6e6;
+  cursor: not-allowed;
+  background-color: #fafafa;
+  color: #cccccc;
+}
+.input.field-error,
+.textarea.field-error {
+  border-color: red;
+}
+.textarea{
+  height: 80px;
+}

@@ -1,4 +1,4 @@
-define('app/exts/globaltip/index.tpl', function() {
+define('app/exts/globalTip/index.tpl', function() {
   return '\
 <div class="globaltip-body <%= type %>">\
   <i class="iconfont <%= typeicon %>"></i>\

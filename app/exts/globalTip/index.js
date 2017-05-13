@@ -4,7 +4,7 @@
 define('app/exts/globalTip/index', [
   'brix/base',
   'jquery',
-  'app/exts/globaltip/index.tpl',
+  'app/exts/globalTip/index.tpl',
   'css!./index.css'
 ], function(Base, $, template){
   var EMPTY = ''
@@ -13,7 +13,7 @@ define('app/exts/globalTip/index', [
   var Cfg = {
     autoHide: true,
     content: EMPTY,
-    delay: 3000,
+    delay: 1000,
     closeable: true,
     type: 'error'
   }

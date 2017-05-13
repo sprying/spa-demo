@@ -153,3 +153,10 @@ mat.task('default', ['less', 'pushState'], function(){
 
 ### 2017-05-10
 * 重新修改了README开头说明
+
+### 2017-05-13
+* 新增表单提交
+* 使用样式参考<http://thx.github.io/brix-spec/main.html>
+* 在文档中又找不到js中查询brix组件方法，brix销毁也找不到
+* 表单校验，使用了kissy的auth组件，我们使用jquery，所以改造了下，具体参考<http://kissygalleryteam.github.io/auth/doc/guide/index.html>
+* 获取表单数据，使用了<https://github.com/marioizquierdo/jquery.serializeJSON/blob/master/jquery.serializejson.js>

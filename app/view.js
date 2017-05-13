@@ -40,6 +40,9 @@ define('app/view', [
           defer.resolve(Loader)
         })
       }
+      this.on('destroy', function(){
+        Loader.destroy(node)
+      })
       return defer.promise()
     }
   })
