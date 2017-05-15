@@ -160,3 +160,8 @@ mat.task('default', ['less', 'pushState'], function(){
 * 在文档中又找不到js中查询brix组件方法，brix销毁也找不到
 * 表单校验，使用了kissy的auth组件，我们使用jquery，所以改造了下，具体参考<http://kissygalleryteam.github.io/auth/doc/guide/index.html>
 * 获取表单数据，使用了<https://github.com/marioizquierdo/jquery.serializeJSON/blob/master/jquery.serializejson.js>
+
+### 2017-05-15
+再说说前天的表单提及。
+* 新增消息，已经新建保存过，再次进入，不输入任何文字，也可以点击按钮，新建消息。我觉得是校验出了问题，初步猜到是区块更新时，brix组件没有销毁。断点调试的时候，进入校验逻辑，对表单元素的校验，还是能取到值的，就是jquery选择器维持那个值。于是我在区块更新时，监听洗事件，去销毁该区块的brix组件。另外js中获取组件时，再加了个查询组件的父元素。问题就解决了。
+* 在调试校验组件源码的时候，发现它的继承机制，然后花了一天时间，总结了对象、类中涉及的工具方法，只是没想到要花昨天整整一个周日时间。学习时[实例链接](http://sprying.github.io/webtest/class/index.html)
