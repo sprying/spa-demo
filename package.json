@@ -1,8 +1,14 @@
 {
   "name": "spa-demo",
   "version": "0.0.1",
-  "dependencies": {
+  "devDependencies": {
     "mat": "^0.1.11",
-    "mat-less": "^0.0.3"
+    "mat-less": "^0.0.3",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-magix-combine": "^1.0.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.1.2"
   }
 }

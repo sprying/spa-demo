@@ -31,8 +31,7 @@
         '/': 'app/views/common/layout',
         '/start/todo/list.htm': 'app/views/common/layout',
         '/start/todo/add.htm': 'app/views/common/layout',
-        '/component/index.htm': 'app/views/common/layout',
-        '/component/validator.htm': 'app/views/common/layout'
+        '/component/index.htm': 'app/views/common/layout'
       }
     })
   })
