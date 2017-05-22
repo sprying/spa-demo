@@ -167,5 +167,16 @@ mat.task('default', ['less', 'pushState'], function(){
 * 在调试校验组件源码的时候，发现它的继承机制，然后花了一天时间，总结了对象、类中涉及的工具方法，只是没想到要花昨天整整一个周日时间。学习时[实例链接](http://sprying.github.io/webtest/class/index.html)
 
 ### 2017-05-19
-* 新增打包gulp脚本，打包后文件分为debug和非debug版本
+* 新增打包gulp脚本，打包后文件分为debug和非debug版本，打包后在工程根目录下生成build目录，推送到cdn时，推送build目录下文件，后端页面代码引用cdn路径
+
+```
+npm install gulp-cli -g
+npm install gulp -D
+gulp build
+```
+
 * 优化菜单逻辑，深层拷贝用jquery方法
+
+### 2017-05-23
+* 想尝试将demo工程放在github的gh-pages分支下，这样可以使用github的web服务访问。但是一方面路由要使用hash，另外接口不支持反向代理，所以放不了
+* gulp打包的依赖npm包，有几个忘加了，加了下。

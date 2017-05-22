@@ -21,16 +21,13 @@ define('app/views/start/todo/add', [
 
         TodoModel.addItem(me, formData).then(function(err, data){
           if(!err){
+            me.navigate('/start/todo/list.htm')
             globalTip.show({
               content: '新增成功',
-              type: 'ok',
-              callback: function(){
-                me.navigate('/start/todo/list.htm')
-              }
+              type: 'ok'
             })
           }
         })
-        debugger
         me.data.isSending = true
         me.setView()
       })
