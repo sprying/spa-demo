@@ -198,4 +198,4 @@ define('app/exts/arale/events', function () {
   }
 
   return Events
-})
+});

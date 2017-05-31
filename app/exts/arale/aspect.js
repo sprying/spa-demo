@@ -69,4 +69,4 @@ define('app/exts/arale/aspect', function () {
   }
 
   return exports
-})
+});

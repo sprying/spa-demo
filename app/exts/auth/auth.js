@@ -364,4 +364,4 @@ define('app/exts/auth/auth', [
   })
 
   return Auth
-})
+});

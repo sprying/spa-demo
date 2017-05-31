@@ -190,4 +190,4 @@ define('app/exts/arale/class', function () {
       }
 
   return Class
-})
+});

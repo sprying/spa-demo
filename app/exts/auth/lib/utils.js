@@ -119,4 +119,4 @@ define('app/exts/auth/lib/utils', [
       return f
     }
   }
-})
+});

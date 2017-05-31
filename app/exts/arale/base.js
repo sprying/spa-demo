@@ -49,4 +49,4 @@ define('app/exts/arale/base', [
   function ucfirst(str) {
     return str.charAt(0).toUpperCase() + str.substring(1)
   }
-})
+});

@@ -13,7 +13,7 @@
 
 >[rap](http://rapapi.org/org/index.do)
 
-先去平台新建一个项目，渠道项目id，修改matfile.js对应的字段
+先去平台新建一个项目，取到项目id，修改matfile.js对应的字段
 
 ## 新建工程
 #### 在工程根目录下新建index.html
@@ -21,7 +21,57 @@
 
     <script src="//g.alicdn.com/thx/brix-release/1.0.0-beta.9/require-config.js"></script>
 
-这个js中会有路径别名配置，比如jquery，underscore，brix。
+这个文件前部分是requirejs源码，后部分是针对有关brix模块的配置，比如jquery，underscore，brix，使用这些模块的时候，直接引用这个名字就行
+
+```js
+  require.config({ // http://requirejs.org/docs/api.html
+    waitSeconds: 0, // http://requirejs.org/docs/api.html#config-waitSeconds
+    // urlArgs: "bust=" + (new Date()).getTime() // http://requirejs.org/docs/api.html#config-urlArgs
+    map: { // http://requirejs.org/docs/api.html#config-map
+      '*': {
+        // RequireJS Loader 插件
+        css: base + 'require-css/css.js'
+      }
+    }
+  })
+```
+请求css时，会使用上面的js文件
+
+```js
+  var brix = {
+    'brix/loader':       base + 'brix-loader/dist/' + gogogo('loader-debug', 'loader'),
+    'brix/base':         base + 'brix-base/dist/' + gogogo('base-debug', 'base'),
+    'brix/event':        base + 'brix-event/dist/' + gogogo('event-debug', 'event'),
+    'brix/animation':    base + 'brix-animation/dist/' + gogogo('animation-debug', 'animation'),
+    'brix/components':   base + 'brix-components/dist/components',
+    'brix/styles':       base + 'brix-components/dist/styles',
+    'brix/dependencies': base,
+    'brix/deps':         base
+  }
+  brix.components   = brix['brix/components']
+  brix.styles       = brix['brix/styles']
+  brix.dependencies = brix['brix/dependencies']
+  brix.deps         = brix['brix/dependencies']
+  require.config({
+    paths: brix
+  })
+
+  var deps = {
+    jquery:      base + 'jquery/dist/' + gogogo('jquery', 'jquery.min'),
+    underscore:  base + 'underscore/' + gogogo('underscore', 'underscore-min'),
+    moment:      base + 'moment/' + gogogo('moment', 'min/moment.min'),
+    handlebars:  base + 'handlebars/' + gogogo('handlebars', 'handlebars.min'),
+    mock:        base + 'mockjs/dist/' + gogogo('mock', 'mock-min'),
+    marked:      base + 'marked/lib/marked',
+    highlightjs: base + 'highlightjs/highlight.pack',
+    nprogress:   base + 'nprogress/nprogress',
+    parsley:     base + 'parsleyjs/dist/' + gogogo('parsley', 'parsley.min'),
+    accounting:  base + 'accountingjs/' + gogogo('accounting', 'accounting.min'),
+    progressbar: base + 'progressbar.js/dist/progressbar',
+    Sortable:    base + 'Sortable/Sortable',
+    vue:         base + 'vue/dist/' + gogogo('vue', 'vue.min')
+  }
+```
 
 #### 新建项目入口js，`app/boot.js`
 通过require引入magix，brix
@@ -85,7 +135,7 @@ Magix.start里配置路由
 	    ├── pages // 放业务对应的css
 	    └── var.less // 定义变量，mixin
 ```
-* mat的api并不好，代理的代码这块放在mat里，感觉怪怪的，然后mat-rap、mat-proxy什么事情都没做，并且不能改rap要代理的域名，所以我干脆去掉。
+* mat默认接口代理到内网rap平台，是写在插件里，不能改。于是我就没用插件，直接在mat配置文件里，写了这块回调。代理的代码这块放在mat的npm里，感觉怪怪的，然后mat-rap、mat-proxy什么事情都没做，并且不能改rap要代理的域名。
 ```
 mat.task('default', ['less', 'pushState'], function(){
   mat.url([/\.json/]).use(function *(next){
@@ -157,7 +207,7 @@ mat.task('default', ['less', 'pushState'], function(){
 ### 2017-05-13
 * 新增表单提交
 * 使用样式参考<http://thx.github.io/brix-spec/main.html>
-* 在文档中又找不到js中查询brix组件方法，brix销毁也找不到
+* 在文档中又找不到js中查询brix组件方法，brix销毁也找不到，又晕
 * 表单校验，使用了kissy的auth组件，我们使用jquery，所以改造了下，具体参考<http://kissygalleryteam.github.io/auth/doc/guide/index.html>
 * 获取表单数据，使用了<https://github.com/marioizquierdo/jquery.serializeJSON/blob/master/jquery.serializejson.js>
 
@@ -178,5 +228,77 @@ gulp build
 * 优化菜单逻辑，深层拷贝用jquery方法
 
 ### 2017-05-23
-* 想尝试将demo工程放在github的gh-pages分支下，这样可以使用github的web服务访问。但是一方面路由要使用hash，另外接口不支持反向代理，所以放不了
+* 想尝试将demo工程放在github的gh-pages分支下，这样可以使用github的web服务访问。这时候路由要使用hash，但是请求服务的xhr接口不支持反向代理，所以放不了
 * gulp打包的依赖npm包，有几个忘加了，加了下。
+
+### 2017-05-31
+端午三天都在重新阅读requirejs源码，然后发现能支持combo，然后就实现了combo功能，结合上周修复了请求路径中带`//`
+
+* 解决请求路径中带`//`问题，是magix库有问题，修改magix xhr请求模板那块file值
+
+    ```js
+      VProto.fetchTmpl = function(path, fn) {
+        var me = this;
+        var hasTemplate = 'tmpl' in me;
+        if (!hasTemplate) {
+          if (Has(Tmpls, path)) {
+            fn(Tmpls[path]);
+          } else {
+            var idx = path.indexOf('/');
+            var name = path.substring(0, idx);
+            if (!Paths[name]) {
+              Paths[name] = require.s.contexts._.config.paths[name];
+            }
+            var file = Paths[name] + '/' + path.substring(idx + 1) + '.html';
+
+     ```
+
+* 另外修改下从cdn拷贝下来的magix未压缩代码，参考magix库在打包成压缩和非压缩前源码，[链接](https://github.com/thx/magix/blob/2.0/src/2.0/magix/tmpl/magix.js#L169)，下面的代码，库官方的打包工具会对压缩和非压缩，出不同的代码，而现在打包工作由项目工程来做，先统一加上。
+
+    ```js
+    var ToTry = function(fns, args, context, i, r, e) {
+        if (!G_IsArray(fns)) {
+            fns = [fns];
+        }
+        if (!args || (!G_IsArray(args) && !args.callee)) {
+            args = [args];
+        }
+        for (i = 0; i < fns.length; i++) {
+            //KEEP /*_*/try{/*_*/
+            e = fns[i];
+            r = e && e.apply(context, args);
+            //KEEP /*_*/}catch(x){/*_*/
+            //KEEP      Cfg.error(x);/*_*/
+            //KEEP /*_*/}/*_*/
+        }
+        return r;
+    };
+     ```
+* 请求js时使用combo，requireJs加载器是不支持combo的，所以我们得改造它。我们将requirejs库拷贝到项目工程中，添加combo代码，覆盖req.load，关于combo的js的url划分实现，从[seajs-combo](https://github.com/seajs/seajs-combo/blob/master/src/seajs-combo.js)改造过来的
+
+* 另外阅读源码之后，combo请求多个js时，返回的define匿名的模块，有两个时是有问题的，我们不好保证combo中没有两个匿名define，所以模块中先要消除匿名define
+
+* combo之后，多个模块会放在一个js中，如果没有`;`分割模块，会报错，对项目里的js加了`;`结束
+
+* 本地开发发起combo，是向mat请求的，所以需要mat开启支持
+
+    ```
+    mat.env({
+      combohandler: true
+    })
+    ```
+    [mat api](http://matjs.com/#!/page/doc?tab=api)里是有这个参数的，但是是做什么的
+
+* 线上静态资源服务如果是nginx，nginx搭建combo功能<https://github.com/alibaba/nginx-http-concat>
+
+* 支持配置哪些js不使用combo请求
+
+    ```js
+      require.config(
+       comboExcludes: [
+          'jquery',
+          'app/view.js',
+          'common/sidebar.js'
+        ]
+      })
+    ```

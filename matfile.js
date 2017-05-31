@@ -5,6 +5,11 @@
 var mat = require('mat')
 var less = require('mat-less')
 
+mat.env({
+	port: 8281,
+  combohandler: true
+})
+
 // 预编译less
  mat.task('less', function(){
   mat.url([/\.css/]).rewrite([

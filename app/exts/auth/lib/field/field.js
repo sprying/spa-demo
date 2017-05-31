@@ -355,4 +355,4 @@ define('app/exts/auth/lib/field/field', [
   })
 
   return Field
-})
+});

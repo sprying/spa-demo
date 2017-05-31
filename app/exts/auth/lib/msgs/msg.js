@@ -161,4 +161,4 @@ define('app/exts/auth/lib/msgs/msg', [
   })
 
   return Msg
-})
+});

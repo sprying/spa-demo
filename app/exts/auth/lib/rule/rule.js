@@ -151,4 +151,4 @@ define('app/exts/auth/lib/rule/rule', [
   })
 
   return Rule
-})
+});

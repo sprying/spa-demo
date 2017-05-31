@@ -61,4 +61,4 @@ define('app/exts/auth/lib/msgs/index', [
   })
 
   return AuthMsg
-})
+});

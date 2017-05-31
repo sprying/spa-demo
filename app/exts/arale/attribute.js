@@ -501,4 +501,4 @@ define('app/exts/arale/attribute', function () {
   }
 
   return exports
-})
+});

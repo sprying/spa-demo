@@ -33,4 +33,4 @@ define('app/exts/auth/lib/rule/ruleFactory', [
   })
 
   return RuleFactory
-})
+});

@@ -44,4 +44,4 @@ define('app/exts/auth/index', [
       this.auth.destroy()
     }
   })
-})
+});

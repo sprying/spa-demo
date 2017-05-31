@@ -1,20 +1,26 @@
 /**
  * Created by yingchun.fyc@alibaba-inc.com on 2017/4/24.
  */
-(function(){
+(function () {
   var scripts = document.getElementsByTagName('script')
   var src = scripts[scripts.length - 1].getAttribute('src')
   var base = /(.*)\/\w+.js/.exec(src)[1]
 
   var debug = document.location.href.search('debug') != -1
-  require.config({
+  require.config(
     paths: {
-      app: base + '/',
-      magix: '//g.alicdn.com/thx/magix/2.0/requirejs-magix',
-      pat: '//g.alicdn.com/mm/pat/latest/pat'
-    }
+      app: base,
+      magix: '/app/requirejs-magix',
+      pat: '//g.alicdn.com/mm/pat/1.4/pat'
+    },
+    comboExcludes: [
+      'jquery',
+      'app/view.js',
+      'common/sidebar.js'
+    ]
   })
-  require(['magix', 'pat'], function(Magix, Pat){
+
+  require(['magix', 'pat'], function (Magix, Pat) {
     Pat.config({
       debug: debug
     })
