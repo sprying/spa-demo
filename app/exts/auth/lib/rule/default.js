@@ -1,7 +1,5 @@
-define('app/exts/auth/lib/rule/default', [
-  'jquery',
-  'underscore'
-], function ($, _) {
+  var $ = require('jquery')
+  var _ = require('underscore')
   var EMPTY = ''
   return {
     /**
@@ -137,4 +135,3 @@ define('app/exts/auth/lib/rule/default', [
       return /^(?:(?!0000)[0-9]{4}([-/.]?)(?:(?:0?[1-9]|1[0-2])\1(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])\1(?:29|30)|(?:0?[13578]|1[02])\1(?:31))|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)([-/.]?)0?2\2(?:29))$/.test($.trim(value))
     }
   }
-});

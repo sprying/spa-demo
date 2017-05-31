@@ -7,7 +7,7 @@
   var base = /(.*)\/\w+.js/.exec(src)[1]
 
   var debug = document.location.href.search('debug') != -1
-  require.config(
+  require.config({
     paths: {
       app: base,
       magix: '/app/requirejs-magix',

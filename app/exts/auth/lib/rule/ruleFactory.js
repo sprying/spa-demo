@@ -1,10 +1,8 @@
-define('app/exts/auth/lib/rule/ruleFactory', [
-  'jquery',
-  'underscore',
-  'app/exts/arale/base',
-  'app/exts/auth/lib/rule/rule',
-  'app/exts/auth/lib/rule/default'
-], function($, _, Base, Rule, defaultRules) {
+  var $ = require('jquery')
+  var _ = require('underscore')
+  var Base = require('app/exts/arale/base')
+  var Rule = require('app/exts/auth/lib/rule/rule')
+  var defaultRules = require('app/exts/auth/lib/rule/default')
   var RuleFactory = Base.extend({
     Statics: {
       rules: _.extend({}, defaultRules),
@@ -33,4 +31,3 @@ define('app/exts/auth/lib/rule/ruleFactory', [
   })
 
   return RuleFactory
-});

@@ -1,8 +1,6 @@
-define('app/exts/globalTip/index.tpl', function() {
-  return '\
+module.exports =  '\
 <div class="globaltip-body <%= type %>">\
   <i class="iconfont <%= typeicon %>"></i>\
   <span class="text"><%= content%></span>\
 </div>\
 '
-})

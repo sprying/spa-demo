@@ -1,6 +1,4 @@
-define('app/serializejson', [
-  'jquery'
-], function ($) {
+  var $ = require('jquery')
   $.fn.serializeJSON = function (options) {
     var f, $form, opts, formAsArray, serializedObject, name, value, _obj, nameWithNoType, type, keys;
     f = $.serializeJSON;
@@ -278,4 +276,3 @@ define('app/serializejson', [
       }
     }
   }
-})

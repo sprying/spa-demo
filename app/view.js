@@ -1,13 +1,11 @@
 /**
  * Created by yingchun.fyc@alibaba-inc.com on 2017/4/25.
  */
-define('app/view', [
-  'magix',
-  'underscore',
-  'jquery',
-  'pat',
-  'brix/loader'
-], function(Magix, _, $, Pat, Loader){
+  var Magix = require('magix')
+  var _ = require('underscore')
+  var $ = require('jquery')
+  var Pat = require('pat')
+  var Loader = require('brix/loader')
   Magix.View.mixin({
     setView: function(firstCallback, otherCallback){
       var me = this
@@ -46,4 +44,3 @@ define('app/view', [
       return defer.promise()
     }
   })
-})

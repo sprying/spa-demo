@@ -1,10 +1,8 @@
 /**
  * Created by yingchun.fyc@alibaba-inc.com on 2017/4/25.
  */
-define('app/views/common/layout', [
-  'magix',
-  'app/exts/menu/index'
-], function (Magix, Menu) {
+  var Magix = require('magix')
+  var Menu = require('app/exts/menu/index')
   return Magix.View.extend({
     init: function () {
       this.observeLocation({
@@ -52,4 +50,3 @@ define('app/views/common/layout', [
       mainVframe.mountView('app/views/' + path)
     }
   })
-})

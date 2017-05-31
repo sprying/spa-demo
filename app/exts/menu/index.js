@@ -1,11 +1,9 @@
 /**
  * Created by yingchun.fyc@alibaba-inc.com on 2017/5/6.
  */
-define('app/exts/menu/index', [
-  'magix',
-  'jquery',
-  'underscore'
-], function (Magix, $, _) {
+  var Magix = require('magix')
+  var $ = require('jquery')
+  var _ = require('underscore')
   var _menus = [{
     name: '入门例子',
     path: '/start/todo/list.htm',
@@ -118,4 +116,3 @@ define('app/exts/menu/index', [
       return urlCache[path]['sidebar']
     }
   }
-})
