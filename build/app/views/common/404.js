@@ -1,1 +1,1 @@
-define("app/views/common/404",["require","module","exports","magix"],function(e,i,t){return e("magix").View.extend({render:function(){this.setHTML(this.id,this.tmpl)}})});
+define("app/views/common/404",["require","module","exports","magix"],function(e,i,t){return e("magix").View.extend({tmpl:"<div class=404>404\u9519\u8bef\uff0c\u672a\u627e\u5230\u9875\u9762\uff01</div>",render:function(){this.setHTML(this.id,this.tmpl)}})});

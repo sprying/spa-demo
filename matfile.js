@@ -4,8 +4,8 @@
 
 var mat = require('mat')
 var less = require('mat-less')
-let combineTool = require('magix-combine')
-let combineToolConfig = require('./combine-tool-config')
+var combineTool = require('magix-combine')
+var combineToolConfig = require('./combine-tool-config')
 var path = require('path')
 
 //magix-combine工具
@@ -36,7 +36,7 @@ mat.env({
   combohandler: true
 })
 
-mat.task('combine', () => {
+mat.task('combine', function(){
   mat.url([/\.js(\?.+)?$/])
   .use(analyse())
 })
@@ -56,9 +56,20 @@ mat.task('pushState', function () {
     ])
 })
 
-mat.task('default', ['less', 'pushState', 'combine'], function(){
+mat.task('proxy', function(){
   mat.url([/\.json/]).use(function *(next){
     this.proxyPass = 'rapapi.org/mockjsdata/18155' // proxyPass会被mat内部处理
     yield next
   })
 })
+
+mat.task('pushState_online', function () {
+  mat.url([/^((?!\.(css|less|js|html|ico|swf)).)*$/])
+    .rewrite([
+      [/(\/.*)+/, 'index-online.html']
+    ])
+})
+
+mat.task('default', ['less', 'pushState', 'combine', 'proxy'])
+
+mat.task('compress', ['pushState_online', 'combine', 'proxy'])

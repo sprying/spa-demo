@@ -302,3 +302,10 @@ gulp build
         ]
       })
     ```
+
+### 2017-06-01
+* 支持commonjs方法写模块，这要做两件事情，第一件，本地开发时跑的服务要支持自动包装一层；第二件事，gulp打包时要能解析出生成build后的文件
+我使用了<https://github.com/thx/magix-combine>，来包装一层define，但是它要求的目录结构跟我工程不一样，所以我修改了下<https://github.com/sprying/magix-combine/tree/feature/1.2.10-modify>
+
+* 新增本地查看使用gulp打包后文件的效果
+>mat compress

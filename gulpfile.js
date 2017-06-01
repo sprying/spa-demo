@@ -3,7 +3,7 @@ var less = require('gulp-less');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-cssmin');
 var sourcemaps = require('gulp-sourcemaps');
-//var combine = require('gulp-magix-combine');
+var combine = require('gulp-magix-combine');
 var clean = require('gulp-clean');
 let combineToolConfig = require('./combine-tool-config')
 let combineTool = require('magix-combine');
@@ -16,35 +16,44 @@ gulp.task('clean', function() {
     .pipe(clean())
 })
 
-gulp.task('compress', ['clean'], function(){
-  combineTool.combine().then(function(){
-    gulp.src(['app/**/*.js', '!app/views/**/*.js'])
-      //.pipe(gulp.dest('./build/app_debug'))
-      //.pipe(sourcemaps.init())
-      .pipe(uglify({
-        output: {ascii_only:true},
-        preserveComments: function(node, comment){
-          return /@heredoc|@preserve|@license|@cc_on/i.test(comment.value);
-        }
-      }))
-      //.pipe(sourcemaps.write())
-      .pipe(gulp.dest('build/app'))
+gulp.task('copyHtml', ['analyzeAmd'], function(){
+  return gulp.src('app/views/**/*.html')
+    .pipe(gulp.dest('build/app/views'))
+})
 
-    gulp.src(['app/views/**/*.js'])
-      //.pipe(combine({
-      //  magixVersion: 2.0
-      //}))
-      //.pipe(gulp.dest('./build/app_debug/views'))
-      //.pipe(sourcemaps.init())
-      .pipe(uglify({
-        output: {ascii_only:true},
-        preserveComments: function(node, comment){
-          return /@heredoc|@preserve|@license|@cc_on/i.test(comment.value);
-        }
-      }))
-      //.pipe(sourcemaps.write())
-      .pipe(gulp.dest('build/app/views'))
+gulp.task('analyzeAmd', ['clean'], function(){
+  combineTool.combine().then(function(){
+
   })
+})
+gulp.task('compress', ['copyHtml'], function(){
+  gulp.src(['build/app/views/**/*.js'])
+    .pipe(combine({
+      magixVersion: 2.0
+    }))
+    .pipe(gulp.dest('./build/app_debug/views'))
+    //.pipe(sourcemaps.init())
+    .pipe(uglify({
+      output: {ascii_only:true},
+      preserveComments: function(node, comment){
+        return /@heredoc|@preserve|@license|@cc_on/i.test(comment.value);
+      }
+    }))
+    //.pipe(sourcemaps.write())
+    .pipe(gulp.dest('build/app/views'))
+
+
+  gulp.src(['build/app/**/*.js', '!build/app/views/**/*.js'])
+  .pipe(gulp.dest('./build/app_debug'))
+  //.pipe(sourcemaps.init())
+  .pipe(uglify({
+    output: {ascii_only:true},
+    preserveComments: function(node, comment){
+      return /@heredoc|@preserve|@license|@cc_on/i.test(comment.value);
+  }
+  }))
+  //.pipe(sourcemaps.write())
+  .pipe(gulp.dest('build/app'))
 
 
   gulp.src([
