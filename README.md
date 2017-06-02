@@ -249,11 +249,11 @@ gulp build
             if (!Paths[name]) {
               Paths[name] = require.s.contexts._.config.paths[name];
             }
-            var file = Paths[name] + '/' + path.substring(idx + 1) + '.html';
+            var file = Paths[name] + '/' + path.substring(idx + 1) + '.html'; // 此处修改了，原先var file = Paths[name] + '/' + path.substring(idx + 1) + '.html'
 
      ```
 
-* 另外修改下从cdn拷贝下来的magix未压缩代码，参考magix库在打包成压缩和非压缩前源码，[链接](https://github.com/thx/magix/blob/2.0/src/2.0/magix/tmpl/magix.js#L169)，下面的代码，库官方的打包工具会对压缩和非压缩，出不同的代码，而现在打包工作由项目工程来做，先统一加上。
+* 另外修改下从cdn拷贝下来的magix未压缩代码，参考magix库在打包前源码，[链接](https://github.com/thx/magix/blob/2.0/src/2.0/magix/tmpl/magix.js#L169)，下面的代码，库官方的打包工具会对压缩和非压缩，出不同的代码，而现在打包工作由项目工程来做，先统一加上。
 
     ```js
     var ToTry = function(fns, args, context, i, r, e) {
@@ -276,7 +276,19 @@ gulp build
      ```
 * 请求js时使用combo，requireJs加载器是不支持combo的，所以我们得改造它。我们将requirejs库拷贝到项目工程中，添加combo代码，覆盖req.load，关于combo的js的url划分实现，从[seajs-combo](https://github.com/seajs/seajs-combo/blob/master/src/seajs-combo.js)改造过来的
 
-* 另外阅读源码之后，combo请求多个js时，返回的define匿名的模块，有两个时是有问题的，我们不好保证combo中没有两个匿名define，所以模块中先要消除匿名define
+* 另外阅读源码之后，combo请求多个js时，返回的define匿名的模块，有两个时是有问题的，我们不好保证combo中没有两个匿名define，所以combo的模块中先要消除匿名define
+
+* 支持配置哪些js不使用combo请求
+
+    ```js
+      require.config(
+       comboExcludes: [
+          'jquery',
+          'app/view.js',
+          'common/sidebar.js'
+        ]
+      })
+    ```
 
 * combo之后，多个模块会放在一个js中，如果没有`;`分割模块，会报错，对项目里的js加了`;`结束
 
@@ -291,21 +303,13 @@ gulp build
 
 * 线上静态资源服务如果是nginx，nginx搭建combo功能<https://github.com/alibaba/nginx-http-concat>
 
-* 支持配置哪些js不使用combo请求
-
-    ```js
-      require.config(
-       comboExcludes: [
-          'jquery',
-          'app/view.js',
-          'common/sidebar.js'
-        ]
-      })
-    ```
 
 ### 2017-06-01
-* 支持commonjs方法写模块，这要做两件事情，第一件，本地开发时跑的服务要支持自动包装一层；第二件事，gulp打包时要能解析出生成build后的文件
-我使用了<https://github.com/thx/magix-combine>，来包装一层define，但是它要求的目录结构跟我工程不一样，所以我修改了下<https://github.com/sprying/magix-combine/tree/feature/1.2.10-modify>
+* 开发中使用commonjs方法写模块，浏览器访问时返回requirejs可以处理的模块，这要做两件事情。
+    第一件，本地的mat服务器要支持，浏览器向mat请求js时，要自动包一层define；
+    第二件，gulp打包也是如此
+    这里使用了<https://github.com/thx/magix-combine>，来包装一层define，但是它要求的目录结构跟我工程不一样，所以修改了下<https://github.com/sprying/magix-combine/tree/feature/1.2.10-modify>
 
 * 新增本地查看使用gulp打包后文件的效果
->mat compress
+
+    >mat compress
