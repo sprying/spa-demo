@@ -305,11 +305,12 @@ gulp build
 
 
 ### 2017-06-01
-* 开发中使用commonjs方法写模块，浏览器访问时返回requirejs可以处理的模块，这要做两件事情。
-    第一件，本地的mat服务器要支持，浏览器向mat请求js时，要自动包一层define；
-    第二件，gulp打包也是如此
-    这里使用了<https://github.com/thx/magix-combine>，来包装一层define，但是它要求的目录结构跟我工程不一样，所以修改了下<https://github.com/sprying/magix-combine/tree/feature/1.2.10-modify>
+* 本地启动mat服务，使用commonjs方法写模块，在浏览器中加载js还是使用requirejs，mat会将加载的js会自动包装一层define。
 
-* 新增本地查看使用gulp打包后文件的效果
+* 测试、线上环境，使用gulp将js包一层define即可发布
+
+* 使用了<https://github.com/thx/magix-combine>，来包装一层define，但是它要求的目录结构跟我工程不一样，所以修改了下<https://github.com/sprying/magix-combine/tree/feature/1.2.10-modify>
+
+* 浏览器中可以查看页面加载打包后的资源文件
 
     >mat compress
