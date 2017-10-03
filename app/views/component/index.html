@@ -1,1 +1,30 @@
-<div>dfadfadf</div>
+<div>
+  <h3>popover</h3>
+  <p>内容带HTML、pat插值，浮出的位置参考 <a href="https://thx.github.io/brix-book/brix-components/popover/examples.html">https://thx.github.io/brix-book/brix-components/popover/examples.html</a></p>
+  <button class="btn" bx-name="app/exts/popover/popover" bx-options="{content:'测试内容<br/><span style=\\'color:#ff0;\\'>测试<\/span>{{1+1}}{{attrValue}}'}">测试</button>
+</div>
+
+<div>
+  <h3>图片居中</h3>
+
+  <style>
+    .list-item-img{
+      background: #f7f7f7;
+      text-align: center;
+      height: 100px;
+      width: 100px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .list-item-img img{
+      max-height: 100px;
+      max-width: 100px;
+      vertical-align: middle;
+    }
+  </style>
+  <a href="" target="_blank" class="list-item-img img-loading">
+    <span class="empty-icon-bg"></span>
+    <!--<img src="//img.alicdn.com/tps/TB1Q736LXXXXXXpXFXXXXXXXXXX-32-32.png" data-src="//img.alicdn.com/bao/uploaded/i2/2216060743/TB2zx2GXCxjpuFjSszeXXaeMVXa_!!2216060743.jpg"/>-->
+    <img src="//img.alicdn.com/bao/uploaded/i2/2216060743/TB2zx2GXCxjpuFjSszeXXaeMVXa_!!2216060743.jpg"/>
+  </a>
+</div>
