@@ -1,0 +1,52 @@
+<style>
+  .ruleMinPrice-err {
+    position: absolute;
+    left: 159px;
+    width: 200px;
+  }
+  .ruleMaxPrice-err {
+    position: absolute;
+    left: 310px;
+    width: 200px;
+  }
+</style>
+<ul class="mb20">
+  <li>该组件是由kissy的auth组件迁移过来的，api参考<a href="http://kissygalleryteam.github.io/auth/doc/guide/index.html">链接</a>，后续又针对以下场景，新增了部分功能</li>
+  <li>页面交互过程中，新的表单元素要添加校验</li>
+  <li>页面交互过程中，要删除部分某表单元素校验</li>
+  <li>添加的校验，校验处理中，有依赖上下文js运行结果</li>
+  <li>自定义错误文案显示的DOM</li>
+</ul>
+<form class="form-auth" bx-name="app/exts/auth/index">
+  <div class="field">
+    <label class="field-label">切换元素校验</label>
+    <label class="mr30">
+      <input type="radio" name="menu" value="" t-model="menu" mx-click="toggle">input去校验
+    </label>
+    <label>
+      <input type="radio" name="menu" value="1" t-model="menu" mx-click="toggle">input加required校验
+      <input type="input" name="menu_input" class="input" required t-bind:disabled="!menu">
+    </label>
+  </div>
+
+  <div class="field">
+    <label class="field-label">js新增范围校验</label>
+    <input type="text" name="minPrice" class="input" msg-wrapper="#J_priceMinMsgWrapper" required number>
+    -
+    <input type="text" name="maxPrice" class="input" msg-wrapper="#J_priceMaxMsgWrapper" required number>
+
+    <!-- 错误消息显示 -->
+    <div id="J_priceMinMsgWrapper" class="ruleMinPrice-err"></div>
+    <div id="J_priceMaxMsgWrapper" class="ruleMaxPrice-err"></div>
+    <p class="color-l mt10">自定义错误信息位置</p>
+  </div>
+
+  <div class="field">
+    <label class="field-label">正整数校验</label>
+    <input type="text" class="input" int>
+  </div>
+
+  <div class="field">
+    <button class="btn" type="button" mx-click="doSubmit">提交</button>
+  </div>
+</form>
