@@ -1,8 +1,9 @@
 //指定不处理的js文件，有些外面引入的库文件本身包含define之类的
 var excludeTmplFolders = [
     'app/boot',
-    'app/require-config-combo',
+    'app/require-config',
     'app/requirejs-magix',
+    'app/requirejs-combo',
     'build'
 ]
 var srcFolder = 'app' //source folder

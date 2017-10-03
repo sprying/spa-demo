@@ -1,0 +1,98 @@
+
+@import "../../../style/var.less";
+
+
+.dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: #fff;
+  //box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  border: 1px solid #d3d3db;
+  .box-shadow(0 4px 12px 0 rgba(32, 32, 64, 0.16));
+  &.dialog-top {
+    margin-bottom: 2px;
+  }
+  &.dialog-bottom {
+    margin-top: 2px;
+  }
+  &.dialog-left {
+    margin-right: 2px;
+  }
+  &.dialog-right {
+    margin-left: 2px;
+  }
+  .dialog-close {
+    -webkit-appearance: none;
+    padding: 0;
+    margin: 13px 8px 0 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    float: right;
+    line-height: 36px;
+    color: #ccc;
+    height: 36px;
+    width: 36px;
+    z-index: 1041;
+  }
+  .dialog-close span {
+    font-size: 14px;
+  }
+  .dialog-close:hover,
+  .dialog-close:focus {
+    color: #f50;
+    text-decoration: none;
+    outline: none;
+  }
+  .dialog-hd {
+    background-color: #fafafa;
+
+    .title {
+      color: #333;
+      font-size: 16px;
+      height: 48px;
+      line-height: 48px;
+      padding: 0 40px;
+    }
+    .tab-nav {
+
+      li {
+        color: #333;
+        cursor: pointer;
+        float: left;
+        font-size: 16px;
+        height: 48px;
+        line-height: 48px;
+        width: 134px;
+        text-align: center;
+
+        &:hover {
+          background-color: #EDEDF0;
+          color: #fa6419;
+        }
+      }
+      li.active {
+        background-color: #FFF;
+        color: @color-brand;
+        cursor: default;
+
+        &:hover {
+          background-color: #FFF;
+        }
+      }
+    }
+  }
+  .dialog-bd {
+    padding: 20px 30px;
+  }
+  .dialog-ft {
+    padding: 10px 40px 20px;
+    text-align: center;
+  }
+  .dialog-extra {
+    padding: 0 40px 40px;
+    text-align: center;
+  }
+}

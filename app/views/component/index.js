@@ -4,6 +4,9 @@
 var Magix = require('magix')
 module.exports = Magix.View.extend({
   render: function () {
+    this.data = {
+      attrValue: '不错'
+    }
     this.setView()
   }
 })
