@@ -75,6 +75,38 @@
       return Number(value) > Number(attr)
     },
     /**
+     * 大于等于
+     */
+    minAndEqual: function(value, attr, defer, field) {
+      if (!this.msg('error')) this.msg('error', '必须大于等于' + attr)
+      if (value == '') return true
+      var $target = this.get('target')
+      if ($target.attr('type') == 'checkbox') {
+        value = 0
+        $target.each(function() {
+          if ($(this).prop('checked')) value ++
+        })
+        if (!this.msg('error')) this.msg('error', '至少选择' + attr + '项')
+      }
+      return Number(value) >= Number(attr)
+    },
+    /**
+     * 小于等于
+     */
+    maxAndEqual: function(value, attr, defer, field) {
+      if (!this.msg('error')) this.msg('error', '必须小于等于' + attr)
+      if (value == '') return true
+      var $target = this.get('target')
+      if ($target.attr('type') == 'checkbox') {
+        value = 0
+        $target.each(function() {
+          if ($(this).prop('checked')) value ++
+        })
+        if (!this.msg('error')) this.msg('error', '最多只能选择' + attr + '项')
+      }
+      return Number(value) <= Number(attr)
+    },
+    /**
      * 最多字符个数验证
      */
     maxlength: function (value, attr, defer, field) {
@@ -133,5 +165,12 @@
       if (!this.msg('error')) this.msg('error', '日期格式不合法')
       if (value == '') return true
       return /^(?:(?!0000)[0-9]{4}([-/.]?)(?:(?:0?[1-9]|1[0-2])\1(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])\1(?:29|30)|(?:0?[13578]|1[02])\1(?:31))|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)([-/.]?)0?2\2(?:29))$/.test($.trim(value))
+    },
+    // 是否是大于0的正整数，不能在前面使用+，因为后端接口会忽略
+    int: function (value) {
+      if (!this.msg('error')) this.msg('error', '必须是大于0的整数')
+      if (value == '') return true
+      value = $.trim(value)
+      return /^\d*$/.test(value) && +value > 0
     }
   }
