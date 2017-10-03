@@ -314,3 +314,9 @@ gulp build
 * 浏览器中可以查看页面加载打包后的资源文件
 
     >mat compress
+
+### 2017-10-03
+* 将combo功能从requirejs文件剥除，单独弄成一个文件，本地开发时，为方便调试，去掉combo
+* auth组件示例
+* popover组件示例
+* 图片水平垂直居中示例
