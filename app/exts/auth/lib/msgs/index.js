@@ -10,7 +10,11 @@ var AuthMsg = Base.extend({
     auth.on('add', function (ev) {
       var field = ev.field
       self._renderMsg(field)
-    })
+    }).on('remove', function (ev) {
+        var field = ev.field
+        var msg = field.get('msg')
+        msg.destroy()
+      })
 
     AuthMsg.superclass.initialize.call(self, {auth: auth})
   },

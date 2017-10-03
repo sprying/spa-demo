@@ -2,7 +2,7 @@ var $ = require('jquery')
 var _ = require('underscore')
 var Base = require('app/exts/arale/base')
 var Field = require('app/exts/auth/lib/field/field')
-var Factory = require('app/exts/auth/rule/ruleFactory')
+var Factory = require('app/exts/auth/lib/rule/ruleFactory')
 var Utils = require('app/exts/auth/lib/utils')
 var DATA_FIELD = 'data-field'
 /**
@@ -130,7 +130,10 @@ var Auth = Base.extend({
   remove: function (key) {
     var self = this
     if (!key) return self
-    if (self._storages[key]) {
+    var field = self._storages[key]
+    if (field) {
+      self.trigger('remove', {field: field})
+      field.destroy()
       delete self._storages[key]
       console.log && console.log('删除' + key + ' field')
       return self

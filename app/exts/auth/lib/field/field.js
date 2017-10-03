@@ -176,13 +176,18 @@ var Field = Base.extend({
    * @param rule
    * @return {*}
    */
-  add: function (name, rule) {
-    var self = this,
-      _storage = self._storage
+  add: function (name, rule, ruleCfg) {
+    var self = this
+    var _storage = self._storage
+    var $target = self.get('target')
     if (rule instanceof Rule) {
       _storage[name] = rule
-    } else if (S.isFunction(rule)) {
-      _storage[name] = new Rule(name, rule)
+    } else if (_.isFunction(rule)) {
+      _storage[name] = new Rule(name, rule, _.extend({
+        value: $target.val(),
+        target: $target,
+        field: self
+      }, ruleCfg))
     }
     self.set('rules', _storage)
     return self

@@ -32,6 +32,12 @@ return Brick.extend({
         $fieldEl.removeClass('field-error')
       })
     })
+
+    auth.on('remove', function (ev) {
+      var field = ev.field
+      var $fieldEl = field.get('target')
+      $fieldEl && $fieldEl.removeClass('field-error')
+    })
     this.auth = auth
 
     if (options.autoRender) {

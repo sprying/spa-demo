@@ -110,6 +110,20 @@ var Msg = Base.extend({
     }
     return $wrapper
   },
+  destroy: function () {
+    var self = this
+    var $wrapper = self.get('wrapper')
+    var host = self.get('host')
+    var $target = self.get('target')
+    var wrapperHook = $target.attr('msg-wrapper')
+    if(!wrapperHook){
+      $wrapper.remove()
+    } else {
+      $wrapper.find('.auth-msg').remove()
+    }
+    host.off('error')
+    host.off('success')
+  },
   attrs: {
     /**
      * 宿主实例，一般是Field实例
